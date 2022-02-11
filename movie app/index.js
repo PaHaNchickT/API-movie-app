@@ -5,6 +5,8 @@ const body = document.querySelector('body')
 const inp = document.querySelector('input')
 let link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
 
+inp.value = ''
+
 // window.addEventListener('timeupdate', function() {
 //     console.log('jopa')
 // })
@@ -67,6 +69,7 @@ home.addEventListener('click', function () {
     })
     link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
     getData(link);
+    inp.value = ''
 })
 
 inp.addEventListener('keydown', function (event) {
@@ -77,5 +80,6 @@ inp.addEventListener('keydown', function (event) {
         })
         link = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${inp.value}`
         getData(link);
+        inp.value = ''
     }
 })

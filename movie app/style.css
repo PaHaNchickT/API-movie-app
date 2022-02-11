@@ -55,7 +55,7 @@ footer {
     align-items: center;
 }
 
-p {
+p, input {
     margin: 0;
     font-family: 'Poppins', sans-serif; 
 }
@@ -85,4 +85,23 @@ p {
     background-repeat: no-repeat;
     filter: invert(1);
     cursor: pointer;
+}
+
+input {
+    border: 2px solid #5FC0CE;
+    background-color: #015965;
+    color: white;
+    border-radius: 0.5rem;
+    width: 250px;
+    padding-left: 10px;
+}
+
+input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    opacity: 0.5;
+}
+
+input:focus {
+    outline: none;
 }
