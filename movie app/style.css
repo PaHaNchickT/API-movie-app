@@ -11,18 +11,22 @@ body {
     justify-content: center;
 }
 
-/* .container {
-    padding: 0 40px 0;
-} */
-
 header {
     background-color: #03899C;
     height: 70px;
+    margin-bottom: 1rem;
+    box-shadow: 0px 0px 20px -5px black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0;
 }
 
 footer {
     background-color: black;
     height: 50px;
+    margin-top: 1rem;
+    box-shadow: 0px 0px 20px 1px black;
 }
 
 .items {
@@ -71,4 +75,16 @@ p {
     flex-basis: 20%;
     text-align: center;
     font-size: 20px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px -1px lightgreen;
+}
+
+.home {
+    height: 40px;
+    width: 40px;
+    background-image: url(assets/home.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    filter: invert(1);
+    cursor: pointer;
 }
