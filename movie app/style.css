@@ -64,7 +64,7 @@ footer {
     align-items: center;
 }
 
-p, input, .error, a {
+p, input, .error, a, h2 {
     margin: 0;
     font-family: 'Poppins', sans-serif; 
 }
@@ -172,4 +172,16 @@ input, p, div, a {
 .rev-info {
     width: 386px;
     height: 579px;
+    color: white
+}
+
+h2 {
+    font-size: 35px;
+    margin-bottom: 50px;
+}
+
+.p1, .p2, .p3 {
+    margin-bottom: 30px;
+    font-size: 20px;
+    text-align: justify;
 }

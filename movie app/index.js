@@ -36,27 +36,30 @@ getData(link);
 
 function showData(data, isMovie=false) {
     if (isMovie === true) {
+        // console.log(data)
         let bg = `<div class="rev-bg items">`
         let div1 = `<div class="rev-img" style='background-image: url("${data.posterUrl}")'>`
         let div2 = `<div class="rev-info">`
         let h2 = `<h2>${data.nameRu} (${data.year})</h2>`
         let p1
         if (data.shortDescription === null) {
-            p1 = `<p>Описание отсутствует</p>`
+            p1 = `<p class='p1'>Описание отсутствует</p>`
         } else {
-            p1 = `<p>Описание: ${data.shortDescription}</p>`
+            p1 = `<p class='p1'>Описание: ${data.shortDescription}</p>`
         }
         let temp = ''
         for (let keys in data.genres) {
             temp = `${temp} ${data.genres[keys].genre},`
         }
-        let p2 = `<p>Жанры:${temp}</p>`
+        let p2 = `<p class='p2'>Жанры:${temp}</p>`
+        let p3 = `<p class='p3'>Рейтинг на КиноПоиске: ${data.ratingKinopoisk}</p>`
         gallery.insertAdjacentHTML('beforeend', bg);
         document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', div1)
         document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', div2)
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', h2)
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p1)
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p2)
+        document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p3)
     } else {
         data.films.forEach((el, ind) => {
         for (let keys in el) {
