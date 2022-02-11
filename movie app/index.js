@@ -1,6 +1,6 @@
 let keyword = 'нет пути домой'
 let data
-const items = document.querySelector('.items')
+const gallery = document.querySelector('.gallery')
 
 async function getData() {
 
@@ -22,10 +22,11 @@ getData();
 function showData(data) {
     data.films.forEach((el, ind)=> {
         for (let keys in el) {
-            let img = `<img class="gallery-img${ind}" src="${el.posterUrl}" alt="image${ind}">`;
-            items.insertAdjacentHTML('beforeend', img);
+            // let img = `<img class="gallery-img${ind} items" src="${el.posterUrlPreview}" alt="image${ind}">`;
+            let div = `<div class="gallery-img${ind} items" style='background-image: url("${el.posterUrlPreview}")'>`;
+            gallery.insertAdjacentHTML('beforeend', div);
             break;
         }
     });
-    // console.log(data)
+    console.log(data)
 }
