@@ -31,6 +31,10 @@ footer {
     height: 50px;
     margin-top: 1rem;
     box-shadow: 0px 0px 20px 1px black;
+    padding: 0 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .items {
@@ -59,7 +63,7 @@ footer {
     align-items: center;
 }
 
-p, input, .error {
+p, input, .error, a {
     margin: 0;
     font-family: 'Poppins', sans-serif; 
 }
@@ -114,4 +118,33 @@ input:focus {
     color: white;
     font-size: 30px;
     margin-top: 250px;
+}
+
+.logo {
+    filter: invert(100%);
+    background-image: url(assets/logo.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 30px;
+}
+
+.github, .year {
+    color: white;
+}
+
+.github {
+    cursor: pointer;
+}
+
+.logo:hover, .github:hover, .home:hover {
+    opacity: 0.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+input, p, div, a {
+    transition: 0.7s;
 }
