@@ -59,6 +59,11 @@ function showData(data) {
             break;
         }
     });
+    if (data.films.length === 0) {
+
+        let p = `<p class="error">К сожалению, поиск не дал результатов</p>`
+        gallery.insertAdjacentHTML('beforeend', p);
+    }
     // console.log(data)
 }
 
@@ -67,6 +72,10 @@ home.addEventListener('click', function () {
     items.forEach(e => {
         e.remove()
     })
+    items = document.querySelectorAll('.error')
+        items.forEach(e => {
+            e.remove()
+        })
     link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
     getData(link);
     inp.value = ''
@@ -75,6 +84,10 @@ home.addEventListener('click', function () {
 inp.addEventListener('keydown', function (event) {
     if (event.code === 'Enter') {
         let items = document.querySelectorAll('.items')
+        items.forEach(e => {
+            e.remove()
+        })
+        items = document.querySelectorAll('.error')
         items.forEach(e => {
             e.remove()
         })

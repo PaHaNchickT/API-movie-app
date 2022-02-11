@@ -11,6 +11,10 @@ body {
     justify-content: center;
 }
 
+.container {
+    min-height: 641px;
+}
+
 header {
     background-color: #03899C;
     height: 70px;
@@ -55,7 +59,7 @@ footer {
     align-items: center;
 }
 
-p, input {
+p, input, .error {
     margin: 0;
     font-family: 'Poppins', sans-serif; 
 }
@@ -104,4 +108,10 @@ input::placeholder {
 
 input:focus {
     outline: none;
+}
+
+.error {
+    color: white;
+    font-size: 30px;
+    margin-top: 250px;
 }
