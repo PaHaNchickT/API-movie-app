@@ -23,8 +23,14 @@ function showData(data) {
     data.films.forEach((el, ind)=> {
         for (let keys in el) {
             // let img = `<img class="gallery-img${ind} items" src="${el.posterUrlPreview}" alt="image${ind}">`;
-            let div = `<div class="gallery-img${ind} items" style='background-image: url("${el.posterUrlPreview}")'>`;
-            gallery.insertAdjacentHTML('beforeend', div);
+            let div1 = `<div class="gallery-img${ind} items" style='background-image: url("${el.posterUrlPreview}")'>`;
+            let div2 = `<div class="movie-info${ind} movie-info">`
+            let p1 = `<p class="name">${el.nameRu}</p>`
+            let p2 = `<p class="rait">${el.rating}</p>`
+            gallery.insertAdjacentHTML('beforeend', div1);
+            document.querySelector(`.gallery-img${ind}`).insertAdjacentHTML('beforeend', div2);
+            document.querySelector(`.movie-info${ind}`).insertAdjacentHTML('beforeend', p1);
+            document.querySelector(`.movie-info${ind}`).insertAdjacentHTML('beforeend', p2);
             break;
         }
     });
