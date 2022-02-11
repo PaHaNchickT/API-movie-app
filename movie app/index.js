@@ -2,8 +2,8 @@ let data
 const gallery = document.querySelector('.gallery')
 const home = document.querySelector('.home')
 const body = document.querySelector('body')
-let keyword = 'человек паук'
-let link = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${keyword}`
+const inp = document.querySelector('input')
+let link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
 
 // window.addEventListener('timeupdate', function() {
 //     console.log('jopa')
@@ -32,15 +32,15 @@ async function getData(lin) {
 getData(link);
 
 function showData(data) {
-    data.films.forEach((el, ind)=> {
+    data.films.forEach((el, ind) => {
         for (let keys in el) {
             // let img = `<img class="gallery-img${ind} items" src="${el.posterUrlPreview}" alt="image${ind}">`;
             let color
             if (el.rating >= 8) {
-                color='lightgreen'
+                color = 'lightgreen'
             } else if (el.rating >= 6) {
-                color='orange'
-            } else color='red'
+                color = 'orange'
+            } else color = 'red'
             let div1 = `<div class="gallery-img${ind} items" style='background-image: url("${el.posterUrlPreview}")'>`;
             let div2 = `<div class="movie-info${ind} movie-info">`
             let p1 = `<p class="name">${el.nameRu}</p>`
@@ -60,11 +60,22 @@ function showData(data) {
     // console.log(data)
 }
 
-home.addEventListener('click', function() {
-    let temp = document.querySelectorAll('.items')
-    temp.forEach(e => {
+home.addEventListener('click', function () {
+    let items = document.querySelectorAll('.items')
+    items.forEach(e => {
         e.remove()
     })
     link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
     getData(link);
+})
+
+inp.addEventListener('keydown', function (event) {
+    if (event.code === 'Enter') {
+        let items = document.querySelectorAll('.items')
+        items.forEach(e => {
+            e.remove()
+        })
+        link = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${inp.value}`
+        getData(link);
+    }
 })
