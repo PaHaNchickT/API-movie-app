@@ -1,19 +1,25 @@
-let keyword = 'нет пути домой'
 let data
 const gallery = document.querySelector('.gallery')
-let link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
 const home = document.querySelector('.home')
+const body = document.querySelector('body')
+let keyword = 'нет пути домой'
+let link = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${keyword}`
 
-home.addEventListener('click', function() {
-    alert('jopa')
-})
+// window.addEventListener('timeupdate', function() {
+//     console.log('jopa')
+// })
 
-async function getData() {
+// function setLocalStorage() {
+//     localStorage.setItem('link', link);
+// }
+// window.addEventListener('beforeunload', setLocalStorage)
+
+async function getData(lin) {
 
     //search
     //`https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${keyword}`
 
-    const res = await fetch(`${link}`, {
+    const res = await fetch(`${lin}`, {
         method: 'GET',
         headers: {
             'X-API-KEY': 'fe77bc0c-1287-4d70-adb2-d5f3b64ee3e7',
@@ -23,7 +29,7 @@ async function getData() {
     const data = await res.json();
     showData(data);
 }
-getData();
+getData(link);
 
 function showData(data) {
     data.films.forEach((el, ind)=> {
@@ -48,3 +54,12 @@ function showData(data) {
     });
     // console.log(data)
 }
+
+home.addEventListener('click', function() {
+    let temp = document.querySelectorAll('.items')
+    temp.forEach(e => {
+        e.remove()
+    })
+    link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
+    getData(link);
+})
