@@ -2,7 +2,7 @@ let data
 const gallery = document.querySelector('.gallery')
 const home = document.querySelector('.home')
 const body = document.querySelector('body')
-let keyword = 'нет пути домой'
+let keyword = 'человек паук'
 let link = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${keyword}`
 
 // window.addEventListener('timeupdate', function() {
@@ -44,7 +44,12 @@ function showData(data) {
             let div1 = `<div class="gallery-img${ind} items" style='background-image: url("${el.posterUrlPreview}")'>`;
             let div2 = `<div class="movie-info${ind} movie-info">`
             let p1 = `<p class="name">${el.nameRu}</p>`
-            let p2 = `<p class="rait" style='color:${color}; box-shadow: 0px 0px 5px -1px ${color};'>${el.rating}</p>`
+            let p2
+            if (el.rating === 'null') {
+                p2 = `<p class="rait" style='color:${color}; box-shadow: 0px 0px 5px -1px ${color};'>-/-</p>`
+            } else {
+                p2 = `<p class="rait" style='color:${color}; box-shadow: 0px 0px 5px -1px ${color};'>${el.rating}</p>`
+            }
             gallery.insertAdjacentHTML('beforeend', div1);
             document.querySelector(`.gallery-img${ind}`).insertAdjacentHTML('beforeend', div2);
             document.querySelector(`.movie-info${ind}`).insertAdjacentHTML('beforeend', p1);
