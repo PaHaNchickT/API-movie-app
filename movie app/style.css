@@ -46,6 +46,7 @@ footer {
     background-color: #03899C;
     border-radius: 4px;
     box-shadow: 5px 5px 20px -10px black;
+    cursor: pointer;
 }
 
 .div {
@@ -147,4 +148,28 @@ a {
 
 input, p, div, a {
     transition: 0.7s;
+}
+
+.rev-bg {
+    width: 860px;
+    height: 579px;
+    background-color: #03899C;
+    border-radius: 4px;
+    box-shadow: 5px 5px 20px -10px black;
+    cursor: default;
+    padding: 30px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rev-img {
+    width: 386px;
+    height: 579px;
+    background-size: 100%;
+}
+
+.rev-info {
+    width: 386px;
+    height: 579px;
 }
