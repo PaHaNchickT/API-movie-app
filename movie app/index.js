@@ -12,6 +12,7 @@ let link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
 let isTrailer
 let trailerUrl
 let URL = []
+let URLout = []
 
 inp.value = ''
 
@@ -49,8 +50,9 @@ async function getData(lin, isMovie = false, isTrailer = NaN) {
 getData(link);
 
 function showData(data, isMovie = false, video = NaN) {
-    console.log(video)
+    // console.log(video)
     URL = []
+    URLout = []
     for (let keys in video) {
         if (keys === 'message') {
             break
@@ -64,24 +66,22 @@ function showData(data, isMovie = false, video = NaN) {
                     }
                 }
             })
-            trailerUrl = URL[1]
-            console.log(trailerUrl)
-            if (trailerUrl !== undefined) {
-                let temp = trailerUrl.split('/')
+            URL.forEach(e => {
+                let temp = e.split('/')
                 if (temp[2] === 'www.youtube.com') {
                     if (temp[3] === 'v') {
-                        trailerUrl = `https://www.youtube.com/embed/${temp[4]}`
+                        URLout.push(`https://www.youtube.com/embed/${temp[4]}`)
+                    } else {
+                        URLout.push(e.replace('watch?v=', 'embed/'))
                     }
-                    trailerUrl = trailerUrl.replace('watch?v=', 'embed/')
                 } else if (temp[2] === 'youtu.be') {
-                    trailerUrl = `https://www.youtube.com/embed/${temp[3]}`
+                    URLout.push(`https://www.youtube.com/embed/${temp[3]}`)
                 }
-            }
+            })
             break
         }
     }
-
-    // console.log(trailerUrl)
+    // console.log(URLout)
 
     if (isMovie === true) {
         // console.log(data)
@@ -102,11 +102,7 @@ function showData(data, isMovie = false, video = NaN) {
         let p2 = `<p class='p2'>Жанры:${temp}</p>`
         let p3 = `<p class='p3'>Рейтинг на КиноПоиске: ${data.ratingKinopoisk}</p>`
         let video
-        if (trailerUrl !== undefined) {
-            video = `<iframe src=${trailerUrl} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
-        } else if (trailerUrl === undefined) {
-            video = `<div class='url-error'>К сожалению, трейлер отсутствует</div>`
-        }
+
         gallery.insertAdjacentHTML('beforeend', bg);
         document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', div1)
         document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', div2)
@@ -114,7 +110,16 @@ function showData(data, isMovie = false, video = NaN) {
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p1)
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p2)
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p3)
-        document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', video)
+        if(URLout.length === 0) {
+            video = `<div class='url-error'>К сожалению, трейлер отсутствует</div>`
+            document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', video)
+        }
+        URLout.forEach(e => {
+            if (e !== undefined) {
+                video = `<iframe src=${e} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+                document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', video)
+            }            
+        })
     } else {
         data.films.forEach((el, ind) => {
             for (let keys in el) {
