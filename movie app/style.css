@@ -158,7 +158,7 @@ input, p, div, a {
 
 .rev-bg {
     width: 860px;
-    height: 579px;
+    min-height: 579px;
     background-color: #03899C;
     border-radius: 4px;
     box-shadow: 5px 5px 20px -10px black;
@@ -167,6 +167,7 @@ input, p, div, a {
     margin: 0;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .rev-img {
@@ -234,4 +235,8 @@ h2 {
     background-repeat: no-repeat;
     cursor: pointer;
     right: 28px;
+}
+
+iframe {
+    margin-top: 30px;
 }

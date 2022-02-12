@@ -6,8 +6,11 @@ const body = document.querySelector('body')
 const inp = document.querySelector('input')
 const btn1 = document.querySelector('.btn1')
 const btn2 = document.querySelector('.btn2')
+let trailer
 let isMovie = false
 let link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
+let isTrailer
+let trailerUrl
 
 inp.value = ''
 
@@ -20,11 +23,7 @@ inp.value = ''
 // }
 // window.addEventListener('beforeunload', setLocalStorage)
 
-async function getData(lin, isMovie = false) {
-
-    //search
-    //`https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${keyword}`
-
+async function getData(lin, isMovie = false, isTrailer = NaN) {
     const res = await fetch(`${lin}`, {
         method: 'GET',
         headers: {
@@ -33,11 +32,50 @@ async function getData(lin, isMovie = false) {
         },
     });
     const data = await res.json();
-    showData(data, isMovie);
+
+    if (isTrailer !== NaN) {
+        const res2 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${isTrailer}/videos`, {
+            method: 'GET',
+            headers: {
+                'X-API-KEY': 'fe77bc0c-1287-4d70-adb2-d5f3b64ee3e7',
+                'Content-Type': 'application/json',
+            },
+        });
+        trailer = await res2.json();
+    }
+    showData(data, isMovie, trailer);
 }
 getData(link);
 
-function showData(data, isMovie = false) {
+function showData(data, isMovie = false, video = NaN) {
+    // console.log(video)
+    for (let keys in video) {
+        if (keys === 'message') {
+            break
+        } else {
+            video.items.forEach(e => {
+                for (let key in e) {
+                    if (e[key] === 'YOUTUBE') {
+                        trailerUrl = e['url']
+                        let temp = trailerUrl.split('/')
+                        // console.log(temp)
+                        if (temp[2] === 'www.youtube.com') {
+                            if (temp[3] === 'v') {
+                                trailerUrl = `https://www.youtube.com/embed/${temp[4]}`
+                            }
+                            trailerUrl = trailerUrl.replace('watch?v=','embed/')
+                        } else if (temp[2] === 'youtu.be') {
+                            trailerUrl = `https://www.youtube.com/embed/${temp[3]}`
+                        }
+                    }
+                }
+            })
+            break
+        }
+    }
+
+    console.log(trailerUrl)
+
     if (isMovie === true) {
         // console.log(data)
         let bg = `<div class="rev-bg item">`
@@ -56,6 +94,7 @@ function showData(data, isMovie = false) {
         }
         let p2 = `<p class='p2'>Жанры:${temp}</p>`
         let p3 = `<p class='p3'>Рейтинг на КиноПоиске: ${data.ratingKinopoisk}</p>`
+        let video = `<iframe width="1000" height="563" src=${trailerUrl} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
         gallery.insertAdjacentHTML('beforeend', bg);
         document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', div1)
         document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', div2)
@@ -63,6 +102,7 @@ function showData(data, isMovie = false) {
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p1)
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p2)
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p3)
+        document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', video)
     } else {
         data.films.forEach((el, ind) => {
             for (let keys in el) {
@@ -122,20 +162,20 @@ home.addEventListener('click', function () {
 
 function search() {
     isMovie = false
-        let items = document.querySelectorAll('.items')
-        items.forEach(e => {
-            e.remove()
-        })
-        items = document.querySelectorAll('.error')
-        items.forEach(e => {
-            e.remove()
-        })
-        items = document.querySelectorAll('.item')
-        items.forEach(e => {
-            e.remove()
-        })
-        link = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${inp.value}`
-        getData(link);
+    let items = document.querySelectorAll('.items')
+    items.forEach(e => {
+        e.remove()
+    })
+    items = document.querySelectorAll('.error')
+    items.forEach(e => {
+        e.remove()
+    })
+    items = document.querySelectorAll('.item')
+    items.forEach(e => {
+        e.remove()
+    })
+    link = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${inp.value}`
+    getData(link);
 
     home.classList.add('active')
     home.classList.remove('hidden')
@@ -145,11 +185,11 @@ function search() {
 
 inp.addEventListener('keydown', function (event) {
     if (event.code === 'Enter') {
-        search();   
+        search();
     }
 })
 
-btn1.addEventListener('click', function() {
+btn1.addEventListener('click', function () {
     search()
 })
 
@@ -167,7 +207,10 @@ gallery.onclick = function openMovie(event) {
             e.remove()
         })
         link = `https://kinopoiskapiunofficial.tech/api/v2.2/films/${event.path[0].id}`
-        getData(link, isMovie);
+        if (Number(link.slice(link.length - 1, link.length)) !== NaN) {
+            isTrailer = event.path[0].id
+        }
+        getData(link, isMovie, isTrailer);
     }
 
     home.classList.remove('active')
@@ -208,6 +251,6 @@ prev.addEventListener('click', function () {
 
 //cross btn
 
-btn2.addEventListener('click', function() {
+btn2.addEventListener('click', function () {
     inp.value = ''
 })
