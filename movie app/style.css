@@ -252,3 +252,44 @@ iframe {
     font-size: 30px;
     text-align: center;
 }
+
+@media screen and (max-width: 940px) {
+    iframe {
+        width: 450px;
+        height: 253px;
+    }
+}
+
+@media screen and (max-width: 847px) {
+    .rev-info {
+        height: 380px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .rev-img {
+        height: 320px;
+    }
+
+    .rev-bg {
+        width: 210px;
+    }
+
+    .rev-info {
+        margin-bottom: 50px;
+    }
+
+    iframe {
+        width: 200px;
+        height: 113px;
+    }
+
+    h2 {
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+
+    .p1, .p2, .p3 {
+        font-size: 16px;
+    }
+}
