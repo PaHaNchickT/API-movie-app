@@ -4,6 +4,7 @@ const home = document.querySelector('.home')
 const prev = document.querySelector('.prev')
 const body = document.querySelector('body')
 const inp = document.querySelector('input')
+const btn1 = document.querySelector('.btn1')
 let isMovie = false
 let link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
 
@@ -118,9 +119,8 @@ home.addEventListener('click', function () {
 
 //search
 
-inp.addEventListener('keydown', function (event) {
-    if (event.code === 'Enter') {
-        isMovie = false
+function search() {
+    isMovie = false
         let items = document.querySelectorAll('.items')
         items.forEach(e => {
             e.remove()
@@ -135,12 +135,21 @@ inp.addEventListener('keydown', function (event) {
         })
         link = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${inp.value}`
         getData(link);
-    }
 
     home.classList.add('active')
     home.classList.remove('hidden')
     prev.classList.remove('active')
     prev.classList.add('hidden')
+}
+
+inp.addEventListener('keydown', function (event) {
+    if (event.code === 'Enter') {
+        search();   
+    }
+})
+
+btn1.addEventListener('click', function() {
+    search()
 })
 
 //open movie pages
