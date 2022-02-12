@@ -1,4 +1,4 @@
-let data
+let data = {}
 const gallery = document.querySelector('.gallery')
 const home = document.querySelector('.home')
 const prev = document.querySelector('.prev')
@@ -31,7 +31,7 @@ async function getData(lin, isMovie = false, isTrailer = NaN) {
             'Content-Type': 'application/json',
         },
     });
-    const data = await res.json();
+    data = await res.json();
 
     if (isTrailer !== NaN) {
         const res2 = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${isTrailer}/videos`, {
@@ -48,7 +48,6 @@ async function getData(lin, isMovie = false, isTrailer = NaN) {
 getData(link);
 
 function showData(data, isMovie = false, video = NaN) {
-    // console.log(video)
     for (let keys in video) {
         if (keys === 'message') {
             break
@@ -63,10 +62,12 @@ function showData(data, isMovie = false, video = NaN) {
                             if (temp[3] === 'v') {
                                 trailerUrl = `https://www.youtube.com/embed/${temp[4]}`
                             }
-                            trailerUrl = trailerUrl.replace('watch?v=','embed/')
+                            trailerUrl = trailerUrl.replace('watch?v=', 'embed/')
                         } else if (temp[2] === 'youtu.be') {
                             trailerUrl = `https://www.youtube.com/embed/${temp[3]}`
                         }
+                    } else {
+                        trailerUrl = undefined
                     }
                 }
             })
@@ -74,7 +75,7 @@ function showData(data, isMovie = false, video = NaN) {
         }
     }
 
-    console.log(trailerUrl)
+    // console.log(trailerUrl)
 
     if (isMovie === true) {
         // console.log(data)
@@ -94,7 +95,12 @@ function showData(data, isMovie = false, video = NaN) {
         }
         let p2 = `<p class='p2'>Жанры:${temp}</p>`
         let p3 = `<p class='p3'>Рейтинг на КиноПоиске: ${data.ratingKinopoisk}</p>`
-        let video = `<iframe width="1000" height="563" src=${trailerUrl} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+        let video
+        if (trailerUrl !== undefined) {
+            video = `<iframe src=${trailerUrl} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+        } else if (trailerUrl === undefined) {
+            video = `<div class='url-error'>К сожалению, трейлер отсутствует</div>`
+        }
         gallery.insertAdjacentHTML('beforeend', bg);
         document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', div1)
         document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', div2)
