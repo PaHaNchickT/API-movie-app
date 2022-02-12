@@ -110,15 +110,15 @@ function showData(data, isMovie = false, video = NaN) {
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p1)
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p2)
         document.querySelector('.rev-info').insertAdjacentHTML('beforeend', p3)
-        if(URLout.length === 0) {
-            video = `<div class='url-error'>К сожалению, трейлер отсутствует</div>`
+        if (URLout.length === 0) {
+            video = `<div class='url-error'>К сожалению, трейлеры отсутствуют</div>`
             document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', video)
         }
         URLout.forEach(e => {
             if (e !== undefined) {
-                video = `<iframe src=${e} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+                video = `<iframe src=${e} clsss='videos' title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
                 document.querySelector('.rev-bg').insertAdjacentHTML('beforeend', video)
-            }            
+            }
         })
     } else {
         data.films.forEach((el, ind) => {
@@ -153,7 +153,6 @@ function showData(data, isMovie = false, video = NaN) {
     }
     // console.log(data)
 }
-
 //home button
 
 home.addEventListener('click', function () {
