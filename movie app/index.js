@@ -48,6 +48,7 @@ async function getData(lin, isMovie = false, isTrailer = NaN) {
 getData(link);
 
 function showData(data, isMovie = false, video = NaN) {
+    console.log(video)
     for (let keys in video) {
         if (keys === 'message') {
             break
