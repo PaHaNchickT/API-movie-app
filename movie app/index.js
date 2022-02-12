@@ -11,6 +11,7 @@ let isMovie = false
 let link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
 let isTrailer
 let trailerUrl
+let URL = []
 
 inp.value = ''
 
@@ -49,6 +50,7 @@ getData(link);
 
 function showData(data, isMovie = false, video = NaN) {
     console.log(video)
+    URL = []
     for (let keys in video) {
         if (keys === 'message') {
             break
@@ -56,22 +58,25 @@ function showData(data, isMovie = false, video = NaN) {
             video.items.forEach(e => {
                 for (let key in e) {
                     if (e[key] === 'YOUTUBE') {
-                        trailerUrl = e['url']
-                        let temp = trailerUrl.split('/')
-                        // console.log(temp)
-                        if (temp[2] === 'www.youtube.com') {
-                            if (temp[3] === 'v') {
-                                trailerUrl = `https://www.youtube.com/embed/${temp[4]}`
-                            }
-                            trailerUrl = trailerUrl.replace('watch?v=', 'embed/')
-                        } else if (temp[2] === 'youtu.be') {
-                            trailerUrl = `https://www.youtube.com/embed/${temp[3]}`
-                        }
+                        URL.push(e['url'])
                     } else {
                         trailerUrl = undefined
                     }
                 }
             })
+            trailerUrl = URL[1]
+            console.log(trailerUrl)
+            if (trailerUrl !== undefined) {
+                let temp = trailerUrl.split('/')
+                if (temp[2] === 'www.youtube.com') {
+                    if (temp[3] === 'v') {
+                        trailerUrl = `https://www.youtube.com/embed/${temp[4]}`
+                    }
+                    trailerUrl = trailerUrl.replace('watch?v=', 'embed/')
+                } else if (temp[2] === 'youtu.be') {
+                    trailerUrl = `https://www.youtube.com/embed/${temp[3]}`
+                }
+            }
             break
         }
     }
