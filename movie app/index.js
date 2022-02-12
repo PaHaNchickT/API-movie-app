@@ -5,6 +5,7 @@ const prev = document.querySelector('.prev')
 const body = document.querySelector('body')
 const inp = document.querySelector('input')
 const btn1 = document.querySelector('.btn1')
+const btn2 = document.querySelector('.btn2')
 let isMovie = false
 let link = 'https://kinopoiskapiunofficial.tech/api/v2.2/films/top'
 
@@ -203,4 +204,10 @@ prev.addEventListener('click', function () {
     home.classList.remove('hidden')
     prev.classList.remove('active')
     prev.classList.add('hidden')
+})
+
+//cross btn
+
+btn2.addEventListener('click', function() {
+    inp.value = ''
 })

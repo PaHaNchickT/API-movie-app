@@ -101,8 +101,8 @@ input {
     background-color: #015965;
     color: white;
     border-radius: 0.5rem;
-    width: 238px;
-    padding-left: 22px;
+    width: 235px;
+    padding-left: 25px;
 }
 
 input::placeholder {
@@ -138,8 +138,14 @@ input:focus {
     cursor: pointer;
 }
 
-.logo:hover, .github:hover, .home:hover {
+.logo:hover, .github:hover, .home:hover, .btn1:hover, .btn2:hover, .prev:hover {
     opacity: 0.5;
+}
+
+.items:hover {
+    box-shadow: 0px 0px 20px -5px white;
+    background-size: 101%;
+    background-position-x: center;
 }
 
 a {
@@ -215,5 +221,17 @@ h2 {
     width: 14px;
     height: 14px;
     background-repeat: no-repeat;
-    right: 265px;
+    right: 264px;
+    cursor: pointer;
+}
+
+.btn2 {
+    background-image: url(assets/cross.png);
+    background-size: 100%;
+    filter:invert(1);
+    width: 12px;
+    height: 12px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    right: 28px;
 }
