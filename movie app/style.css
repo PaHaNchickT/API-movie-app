@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+body {
+    background-color: #015965;
+    margin: 0;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.container {
+    min-height: 641px;
+}
+
+header {
+    background-color: #03899C;
+    height: 70px;
+    margin-bottom: 1rem;
+    box-shadow: 0px 0px 20px -5px black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0;
+}
+
+footer {
+    background-color: black;
+    height: 50px;
+    margin-top: 1rem;
+    box-shadow: 0px 0px 20px 1px black;
+    padding: 0 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.items {
+    width: 300px;
+    height: 550px;
+    margin: 1rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: #03899C;
+    border-radius: 4px;
+    box-shadow: 5px 5px 20px -10px black;
+    cursor: pointer;
+}
+
+.div {
+    background-image: url('')
+}
+
+.movie-info {
+    width: 100%;
+    height: 100px;
+    margin-top: 450px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+p, input, .error, a, h2, .url-error {
+    margin: 0;
+    font-family: 'Poppins', sans-serif; 
+}
+
+.name {
+    color: white;
+    margin-left: 20px;
+    flex-basis: 80%;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.rait {
+    background-color: #015965;
+    margin: 0 20px 0;
+    flex-basis: 20%;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 3px;
+}
+
+.home {
+    height: 40px;
+    width: 40px;
+    background-image: url(assets/home.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    filter: invert(1);
+    cursor: pointer;
+}
+
+input {
+    border: 2px solid #5FC0CE;
+    background-color: #015965;
+    color: white;
+    border-radius: 0.5rem;
+    width: 235px;
+    padding-left: 25px;
+}
+
+input::placeholder {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    opacity: 0.5;
+}
+
+input:focus {
+    outline: none;
+}
+
+.error {
+    color: white;
+    font-size: 30px;
+    margin-top: 250px;
+}
+
+.logo {
+    filter: invert(100%);
+    background-image: url(assets/logo.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 30px;
+}
+
+.github, .year {
+    color: white;
+}
+
+.github {
+    cursor: pointer;
+}
+
+.logo:hover, .github:hover, .home:hover, .btn1:hover, .btn2:hover, .prev:hover {
+    opacity: 0.5;
+}
+
+.items:hover {
+    box-shadow: 0px 0px 20px -5px white;
+    background-size: 101%;
+    background-position-x: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+input, p, div, a {
+    transition: 0.7s;
+}
+
+.rev-bg {
+    width: 860px;
+    min-height: 579px;
+    background-color: #03899C;
+    border-radius: 4px;
+    box-shadow: 5px 5px 20px -10px black;
+    cursor: default;
+    padding: 30px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.rev-img {
+    width: 386px;
+    height: 579px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.rev-info {
+    width: 386px;
+    height: 579px;
+    color: white
+}
+
+h2 {
+    font-size: 35px;
+    margin-bottom: 50px;
+}
+
+.p1, .p2, .p3 {
+    margin-bottom: 30px;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.prev {
+    background-image: url(assets/arrow.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 40px;
+    width: 40px;
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.active {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn1, .btn2 {
+    position: absolute;
+}
+
+.btn1 {
+    background-image: url(assets/search.png);
+    background-size: 100%;
+    filter:invert(1);
+    width: 14px;
+    height: 14px;
+    background-repeat: no-repeat;
+    right: 264px;
+    cursor: pointer;
+}
+
+.btn2 {
+    background-image: url(assets/cross.png);
+    background-size: 100%;
+    filter:invert(1);
+    width: 12px;
+    height: 12px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    right: 28px;
+}
+
+iframe {
+    margin-top: 30px;
+    width: 1000px;
+    height: 563px;
+}
+
+.url-error {
+    margin-top: 30px;
+    width: 1000px;
+    height: 40px;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+@media screen and (max-width: 940px) {
+    iframe {
+        width: 450px;
+        height: 253px;
+    }
+}
+
+@media screen and (max-width: 847px) {
+    .rev-info {
+        height: 380px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .rev-img {
+        height: 320px;
+    }
+
+    .rev-bg {
+        width: 210px;
+    }
+
+    .rev-info {
+        margin-bottom: 50px;
+    }
+
+    iframe {
+        width: 200px;
+        height: 113px;
+    }
+
+    h2 {
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+
+    .p1, .p2, .p3 {
+        font-size: 16px;
+    }
+}
